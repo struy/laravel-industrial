@@ -1,0 +1,32 @@
+<?php
+
+return array (
+  'title' => 'Titel',
+  'contact' => 'Contact',
+  'person' => 'Person',
+  'location' => 'Ort',
+  'start_date' => 'Beginn',
+  'salary' => 'Gehalt',
+  'description' => 'Description',
+  'company' => 'company',
+  'description_job' => 'Tätigkeitsbeschreibung',
+  'requirements' => 'Anforderungen',
+  'project_service' => 'Projektservice',
+  'background' => 'Hintergrund',
+  'result' => 'Ergebnis',
+  'duration' => 'Dauer',
+  'booking' => 'Buchung',
+  'select_project_service' => 'SELECT PROJECT SERVICE',
+  'submit' => 'Absenden',
+  'notice' => '<strong>Achtung:</strong> Für nähere Informationen klicken Sie bitte auf die gewünschte Tätigkeit in der Liste',
+  'description_company' => 'Company Description',
+  'enquiry' => 'Neue Anfrage',
+    'country' => 'Land',
+    'city' => 'Stadt',
+    'stories' => 'Geschichten',
+    'read_more' => 'Mehr erfahren',
+    'contact_person' => 'Ansprechpartner',
+    'job_list' => 'Jobliste',
+    'new_job' => 'Neuen Job hinzufügen',
+
+);
