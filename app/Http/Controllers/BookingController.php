@@ -229,5 +229,11 @@ class BookingController extends Controller
         return $bookings;
     }
 
+    public function calendar()
+    {
+        $data = ['page_title' => 'Calendar' ];
+        return view('booking/index', $data);
+    }
+
 
 }
