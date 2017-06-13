@@ -25,17 +25,13 @@ Route::group(
         });
 
         Route::get('/calendar', function () {
-            $lang = \App::getLocale();
-            $data = [
-                'page_title' => 'Calendar',
-                'lang' => $lang
-            ];
+            $data = ['page_title' => 'Calendar' ];
             return view('booking/index', $data);
         });
 
         Route::post('contact',
             ['as' => 'contact_store', 'uses' => 'ContactController@store']);
-
+        Route::post('search_job', 'JobController@search');
 
         Route::get('/', 'WelcomeController@index');
         Route::group(['middleware' => 'web'], function () {
@@ -55,17 +51,6 @@ Route::group(
 
         Route::get('/offers/create/{id}', 'OfferController@create');
 
-        Route::group(['middleware' => 'auth'], function () {
-            Route::get('/list', function () {
-                $lang = \App::getLocale();
-                $data = [
-                    'page_title' => 'Home',
-                    'lang' => $lang
-                ];
-                return view('booking/index', $data);
-            });
-        });
-
         Route::get('/api', 'BookingController@api');
 
     });
@@ -77,30 +62,5 @@ Route::group(['middleware' => ['devmode']], function () {
 });
 Route::resource('jobs', 'JobController');
 Route::get('/offers/create/{id}', 'OfferController@create');
-Route::post('/en/search_job', 'JobController@search');
-Route::post('ajaximage', function () {
-    $allowed = array('png', 'jpg', 'gif');
-    $rules = [
-        'file' => 'required|image|mimes:jpeg,jpg,png,gif'
-    ];
-    $data = Input::all();
-    $validator = Validator::make($data, $rules);
-    if ($validator->fails()) {
-        return '{"status":"Invalid File type"}';
-    }
-    if (Input::hasFile('file')) {
-        $extension = Input::file('file')->getClientOriginalExtension();
-        if (!in_array(strtolower($extension), $allowed)) {
-            return '{"status":"Invalid File type"}';
-        } else {
-            $filename = uniqid() . '_attachment.' . $extension;
-            if (Input::file('file')->move('source/', $filename)) {
-                echo url('source/' . $filename);
-                exit;
-            }
-        }
-    } else {
-        return '{"status":"Invalid File type"}';
-    }
-});
+Route::post('ajaximage', 'AjaxImageController@index');
 Route::auth();
