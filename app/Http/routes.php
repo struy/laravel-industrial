@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Input;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'devmode']
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect']
     ],
     function () {
         /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
@@ -45,10 +45,6 @@ Route::group(
     });
 
 /** OTHER PAGES THAT SHOULD NOT BE LOCALIZED **/
-
-Route::group(['middleware' => ['devmode']], function () {
-    Route::auth();
-});
 
 Route::get('/offers/create/{id}', 'OfferController@create');
 Route::post('ajaximage', 'AjaxImageController@index');
